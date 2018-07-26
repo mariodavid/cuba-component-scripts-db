@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.com/mariodavid/cuba-component-taggable.svg?branch=master)](https://travis-ci.com/mariodavid/cuba-component-taggable)
-[ ![Download](https://api.bintray.com/packages/mariodavid/cuba-components/cuba-component-taggable/images/download.svg) ](https://bintray.com/mariodavid/cuba-components/cuba-component-taggable/_latestVersion)
+[![Build Status](https://travis-ci.com/mariodavid/cuba-component-scripts-db.svg?branch=master)](https://travis-ci.com/mariodavid/cuba-component-scripts-db)
+[ ![Download](https://api.bintray.com/packages/mariodavid/cuba-components/cuba-component-scripts-db/images/download.svg) ](https://bintray.com/mariodavid/cuba-components/cuba-component-scripts-db/_latestVersion)
 [![license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0)
 
 CUBA component - Scripts DB
