@@ -6,5 +6,6 @@
 build/*
 deploy/*
 modules/*/build/*
+modules/*/test-home/*
 out
 test-run

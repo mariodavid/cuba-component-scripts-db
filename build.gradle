@@ -14,10 +14,13 @@ buildscript {
     }
     dependencies {
         classpath "com.haulmont.gradle:cuba-plugin:$cubaVersion"
+
+
+        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.0"
     }
 }
 
-def modulePrefix = 'app'
+def modulePrefix = 'scripts-db'
 
 def globalModule = project(":${modulePrefix}-global")
 def coreModule = project(":${modulePrefix}-core")
@@ -32,7 +35,7 @@ apply(plugin: 'cuba')
 cuba {
     artifact {
         group = 'de.diedavids.cuba.scriptsdb'
-        version = '0.1'
+        version = "0.1.0"
         isSnapshot = true
     }
     tomcat {
@@ -40,6 +43,48 @@ cuba {
     }
     ide {
         vcs = 'Git'
+    }
+}
+
+
+
+subprojects {
+    apply plugin: 'com.jfrog.bintray'
+
+    bintray {
+        user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('UPLOAD_REPOSITORY_USERNAME')
+        key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('UPLOAD_REPOSITORY_PASSWORD')
+
+        configurations = ['archives']
+
+        publish = true
+
+        override = false
+
+        // metadata
+        pkg {
+            repo = 'cuba-components'
+            name = 'cuba-component-scripts-db'
+            desc = 'CUBA component that makes groovy scripts a first class citizen in a CUBA application'
+            userOrg = 'mariodavid'
+
+            websiteUrl = 'https://github.com/mariodavid/cuba-component-scripts-db'
+            issueTrackerUrl = 'https://github.com/mariodavid/cuba-component-scripts-db/issues'
+            vcsUrl = 'https://github.com/mariodavid/cuba-component-scripts-db.git'
+
+            licenses = ["Apache-2.0"]
+
+            labels = ['scripts-db', 'cuba-patform', 'cuba-component']
+            githubRepo = 'mariodavid/cuba-component-scripts-db'
+            githubReleaseNotesFile = 'CHANGELOG.md'
+
+            version {
+                name = "${cuba.artifact.version}"
+                desc = ''
+                released = new Date()
+                vcsTag = "${cuba.artifact.version}"
+            }
+        }
     }
 }
 
@@ -67,6 +112,15 @@ configure([globalModule, coreModule, webModule]) {
 
     artifacts {
         archives sourceJar
+    }
+}
+
+configure([globalModule, coreModule, webModule]) {
+    apply(plugin: 'groovy')
+
+    sourceSets {
+        main { groovy { srcDirs = ["src"] } }
+        test { groovy { srcDirs = ["test"] } }
     }
 }
 
