@@ -10,7 +10,4 @@ before_install:
   - chmod +x ./gradlew
 
 script:
-  - ./gradlew --no-daemon assemble
-
-script:
-  - ./gradlew --no-daemon check
+  - ./run-check.sh
