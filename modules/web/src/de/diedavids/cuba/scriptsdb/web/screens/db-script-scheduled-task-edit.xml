@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        xmlns:ext="http://schemas.haulmont.com/cuba/window-ext.xsd"
+        class="de.diedavids.cuba.scriptsdb.web.screens.DbScriptScheduledTaskEditor"
+        extends="/com/haulmont/cuba/gui/app/core/scheduled/scheduled-task-edit.xml"
+        messagesPack="de.diedavids.cuba.scriptsdb.web.screens">
+    <dsContext>
+        <datasource id="taskDs" class="de.diedavids.cuba.scriptsdb.entity.DbScriptScheduledTask" view="dbScriptScheduledTask-view"/>
+        <collectionDatasource id="dbScriptsDs"
+                              class="de.diedavids.cuba.scriptsdb.entity.Script">
+            <query>
+                <![CDATA[select e from ddcsd$Script e]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+
+    <assign name="fieldWidth" value="theme://cuba.gui.scheduled-task-edit.field.width"/>
+    <assign name="smallFieldWidth" value="theme://cuba.gui.scheduled-task-edit.smallField.width"/>
+
+
+    <layout>
+        <scrollBox id="gridScroll" scrollBars="both">
+            <grid id="grid" spacing="true">
+                <columns count="2"/>
+                <rows>
+                    <row ext:index="5">
+                        <label id="dbScriptLabel"
+                               value="msg://dbScript"
+                               align="MIDDLE_LEFT"/>
+                        <lookupField id="dbScriptField"
+                                     optionsDatasource="dbScriptsDs"
+                                     datasource="taskDs"
+                                     width="${fieldWidth}"
+                                     property="dbScript" />
+                    </row>
+
+                </rows>
+            </grid>
+        </scrollBox>
+    </layout>
+</window>

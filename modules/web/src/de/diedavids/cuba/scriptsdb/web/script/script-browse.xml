@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="de.diedavids.cuba.scriptsdb.web.script.ScriptBrowse"
+        focusComponent="scriptsTable"
+        lookupComponent="scriptsTable"
+        messagesPack="de.diedavids.cuba.scriptsdb.web.script">
+    <dsContext>
+        <groupDatasource id="scriptsDs"
+                         class="de.diedavids.cuba.scriptsdb.entity.Script"
+                         view="script-view">
+            <query>
+                <![CDATA[select e from ddcsd$Script e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="scriptsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="scriptsTable"
+                datasource="scriptsDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="scriptsTable"
+                    width="100%">
+            <actions>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="code"/>
+                <column id="category"/>
+                <column id="description" maxTextLength="30"/>
+            </columns>
+            <rows datasource="scriptsDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="scriptsTable.create"/>
+                <button id="editBtn"
+                        action="scriptsTable.edit"/>
+                <button id="removeBtn"
+                        action="scriptsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

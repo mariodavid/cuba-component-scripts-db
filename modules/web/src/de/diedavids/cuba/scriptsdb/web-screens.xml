@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<screen-config xmlns="http://schemas.haulmont.com/cuba/screens.xsd">
+    <screen id="ddcsd$Script.browse"
+            template="de/diedavids/cuba/scriptsdb/web/script/script-browse.xml"/>
+    <screen id="ddcsd$Script.edit"
+            template="de/diedavids/cuba/scriptsdb/web/script/script-edit.xml"/>
+    <screen id="ddcsd$ScriptCategory.browse"
+            template="de/diedavids/cuba/scriptsdb/web/scriptcategory/script-category-browse.xml"/>
+    <screen id="ddcsd$ScriptCategory.edit"
+            template="de/diedavids/cuba/scriptsdb/web/scriptcategory/script-category-edit.xml"/>
+    <screen id="sys$ScheduledTask.edit"
+            template="de/diedavids/cuba/scriptsdb/web/screens/db-script-scheduled-task-edit.xml"/>
+    <screen id="sys$ScheduledTask.browse"
+            template="de/diedavids/cuba/scriptsdb/web/screens/db-script-scheduled-task-browse.xml"/>
+</screen-config>

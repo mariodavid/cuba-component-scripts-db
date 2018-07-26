@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        class="de.diedavids.cuba.scriptsdb.web.screens.DbScriptScheduledTaskBrowser"
+        extends="/com/haulmont/cuba/gui/app/core/scheduled/scheduled-task-browse.xml"
+        messagesPack="de.diedavids.cuba.scriptsdb.web.screens"
+        xmlns:ext="http://schemas.haulmont.com/cuba/window-ext.xsd">
+
+    <dsContext>
+        <groupDatasource id="tasksDs" class="de.diedavids.cuba.scriptsdb.entity.DbScriptScheduledTask" view="dbScriptScheduledTask-view">
+            <query>
+                select t from ddcsd$DbScriptScheduledTask t order by t.beanName, t.methodName
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <layout>
+        <groupTable id="tasksTable">
+            <columns>
+                <column id="dbScript" link="true"
+                        ext:index="5"/>
+            </columns>
+        </groupTable>
+    </layout>
+</window>

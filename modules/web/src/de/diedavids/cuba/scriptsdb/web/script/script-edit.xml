@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="de.diedavids.cuba.scriptsdb.web.script.ScriptEdit"
+        datasource="scriptDs"
+        focusComponent="fieldGroup"
+        messagesPack="de.diedavids.cuba.scriptsdb.web.script">
+    <dsContext>
+        <datasource id="scriptDs"
+                    class="de.diedavids.cuba.scriptsdb.entity.Script"
+                    view="script-view"/>
+        <collectionDatasource id="categoriesDs"
+                              class="de.diedavids.cuba.scriptsdb.entity.ScriptCategory"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from ddcsd$ScriptCategory e]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="mainTabSheet"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="scriptDs">
+            <column width="250px">
+                <field property="name"/>
+                <field optionsDatasource="categoriesDs"
+                       property="category"/>
+            </column>
+            <column width="250px">
+                <field property="code"/>
+            </column>
+        </fieldGroup>
+        <tabSheet id="mainTabSheet">
+            <tab id="contentTab"
+                 caption="msg://de.diedavids.cuba.scriptsdb.entity/Script.content"
+                 expand="contentSourceCodeEditor"
+                 margin="true"
+                 spacing="true">
+                <sourceCodeEditor id="contentSourceCodeEditor"
+                                  datasource="scriptDs"
+                                  handleTabKey="true"
+                                  mode="Groovy"
+                                  property="content"
+                                  width="100%"/>
+            </tab>
+            <tab id="descriptionTab"
+                 caption="msg://de.diedavids.cuba.scriptsdb.entity/Script.description"
+                 expand="descriptionTextArea"
+                 margin="true"
+                 spacing="true">
+                <textArea id="descriptionTextArea"
+                          datasource="scriptDs"
+                          property="description"
+                          width="100%"/>
+            </tab>
+        </tabSheet>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>
